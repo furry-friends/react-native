@@ -1,12 +1,12 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {ScrollView, Text, View} from 'react-native';
+import React, { useContext, useEffect, useState } from 'react';
+import { ScrollView, Text, View } from 'react-native';
 import CatCard from '../../components/CatCard/CatCard';
 
 import styles from './ListScreen.styles';
 import AddCatButton from '../../components/AddCatButton/AddCatButton';
-import {CatContext} from '../../states/cats';
+import { CatContext } from '../../states/cats';
 import catRepository from '../../repositories/catRepository';
-import {Cat, SortBy, sortCatsBy} from 'frontend-lib';
+import { Cat, SortBy, sortCatsBy } from 'frontend-lib';
 import CatEditor from './CatEditor';
 
 interface ListScreenProps {
@@ -19,12 +19,12 @@ const ListScreen: React.FC<ListScreenProps> = ({
   defaultSortBy,
   keyword,
 }): JSX.Element => {
-  const {cats, setCats} = useContext(CatContext);
+  const { cats, setCats } = useContext(CatContext);
   const [showEditor, setShowEditor] = useState(false);
 
   useEffect((): (() => void) => {
     (async (): Promise<void> => {
-      const data = await catRepository.query({keyword});
+      const data = await catRepository.query({ keyword });
       setCats(sortCatsBy(data, defaultSortBy));
     })();
 
@@ -43,7 +43,7 @@ const ListScreen: React.FC<ListScreenProps> = ({
 
   return (
     <>
-      {showEditor && <CatEditor onClose={() => setShowEditor(false)} />}
+      {showEditor && <CatEditor onClose={(): void => setShowEditor(false)} />}
       <ScrollView style={styles.scrollview}>
         <View style={styles.container}>
           {cats.map(

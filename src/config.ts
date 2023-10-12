@@ -3,4 +3,4 @@ const Colors = {
   background: '#f5f5f5',
 };
 
-export {Colors};
+export { Colors };

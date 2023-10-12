@@ -1,7 +1,7 @@
 import React from 'react';
-import {Image, Text, View} from 'react-native';
+import { Image, Text, View } from 'react-native';
 import styles from './Header.styles';
-import {icons} from '../../assets';
+import { icons } from '../../assets';
 
 interface HeaderProps {}
 

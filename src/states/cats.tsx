@@ -1,5 +1,5 @@
-import {Cat} from 'frontend-lib';
-import React, {createContext, useState} from 'react';
+import { Cat } from 'frontend-lib';
+import React, { createContext, useState } from 'react';
 
 interface CatContextValue {
   cats: Cat[];
@@ -19,7 +19,7 @@ const CatContext = createContext<CatContextValue>({
   deleteCat: (_: number): void => {},
 });
 
-const CatProvider: React.FC<CatProviderProps> = ({children}): JSX.Element => {
+const CatProvider: React.FC<CatProviderProps> = ({ children }): JSX.Element => {
   const [cats, setCats] = useState<Cat[]>([]);
 
   /**
@@ -52,4 +52,4 @@ const CatProvider: React.FC<CatProviderProps> = ({children}): JSX.Element => {
   );
 };
 
-export {CatProvider, CatContext};
+export { CatProvider, CatContext };

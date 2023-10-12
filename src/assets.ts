@@ -2,9 +2,9 @@
  * This file contains all the assets from assets folder.
  */
 
-import {ImageSourcePropType} from 'react-native';
+import { ImageSourcePropType } from 'react-native';
 
-type ImageMap = {[key: string]: ImageSourcePropType};
+type ImageMap = { [key: string]: ImageSourcePropType };
 
 /**
  * Icons from assets/icons folder.
@@ -19,4 +19,4 @@ const icons: ImageMap = {
   magnifier: require('./assets/icons/magnifier.png'),
 };
 
-export {icons};
+export { icons };

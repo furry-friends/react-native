@@ -6,11 +6,11 @@
  */
 
 import React from 'react';
-import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
-import {Colors} from '../config';
+import { SafeAreaView, StatusBar, useColorScheme } from 'react-native';
+import { Colors } from '../config';
 import Header from './Header/Header';
 import ListScreen from '../screens/ListScreen/ListScreen';
-import {CatProvider} from '../states/cats';
+import { CatProvider } from '../states/cats';
 
 const App = (): JSX.Element => {
   const isDarkMode = useColorScheme() === 'dark';

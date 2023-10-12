@@ -1,14 +1,14 @@
 import React from 'react';
-import {Modal, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import { Modal, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import styles from './CatEditor.styles';
 import IconButton from '../../components/IconButton/IconButton';
-import {icons} from '../../assets';
+import { icons } from '../../assets';
 
 interface CatEditorProps {
   onClose: () => void;
 }
 
-const CatEditor: React.FC<CatEditorProps> = ({onClose}): JSX.Element => {
+const CatEditor: React.FC<CatEditorProps> = ({ onClose }): JSX.Element => {
   return (
     <View style={styles.centeredView}>
       <Modal animationType="fade" transparent={true} visible={true}>

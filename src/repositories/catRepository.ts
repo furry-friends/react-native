@@ -1,4 +1,4 @@
-import {Cat} from 'frontend-lib';
+import { Cat } from 'frontend-lib';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const CATS_KEY = 'cats';
@@ -38,7 +38,7 @@ class CatRepository {
   /**
    * Returns all the cats or the cats name contains the given keyword.
    */
-  async query({keyword}: {keyword?: string} = {}): Promise<Cat[]> {
+  async query({ keyword }: { keyword?: string } = {}): Promise<Cat[]> {
     const cats = await this.listAll();
 
     if (!keyword) {
@@ -65,7 +65,7 @@ class CatRepository {
     const cats = await this.listAll();
 
     if (cat.isNew) {
-      cat = cat.copyWith({id: cats.length + 1});
+      cat = cat.copyWith({ id: cats.length + 1 });
       cats.push(cat);
     } else {
       const index = cats.findIndex((e): boolean => e.id === cat.id);

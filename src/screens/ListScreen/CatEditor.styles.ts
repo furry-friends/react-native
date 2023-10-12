@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import {Colors} from '../../config';
+import { StyleSheet } from 'react-native';
+import { Colors } from '../../config';
 
 const styles = StyleSheet.create({
   centeredView: {
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     width: '90%',
     shadowColor: '#666',
-    shadowOffset: {width: 0, height: 2},
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
