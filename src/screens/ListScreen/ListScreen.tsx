@@ -3,6 +3,7 @@ import {ScrollView, View} from 'react-native';
 import CatCard from '../../components/CatCard/CatCard';
 
 import styles from './ListScreen.styles';
+import AddCatButton from '../../components/AddCatButton/AddCatButton';
 
 interface ListScreenProps {}
 
@@ -13,6 +14,7 @@ const ListScreen: React.FC<ListScreenProps> = (): JSX.Element => {
         <CatCard />
         <CatCard />
         <CatCard />
+        <AddCatButton onPress={(): void => {}} />
       </View>
     </ScrollView>
   );
