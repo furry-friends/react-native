@@ -9,6 +9,7 @@ import React from 'react';
 import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
 import {Colors} from '../config';
 import Header from './Header/Header';
+import ListScreen from '../screens/ListScreen/ListScreen';
 
 const App = (): JSX.Element => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -24,6 +25,7 @@ const App = (): JSX.Element => {
         backgroundColor={backgroundStyle.backgroundColor}
       />
       <Header />
+      <ListScreen />
     </SafeAreaView>
   );
 };
