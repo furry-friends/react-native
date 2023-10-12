@@ -4,14 +4,12 @@ import CatCard from '../../components/CatCard/CatCard';
 
 import styles from './ListScreen.styles';
 import AddCatButton from '../../components/AddCatButton/AddCatButton';
-import { CatContext } from '../../states/cats';
 import catRepository from '../../repositories/catRepository';
-import { Cat, SortBy, sortCatsBy } from 'frontend-lib';
+import { Cat, CatContext, SortBy, sortCatsBy } from 'frontend-lib';
 import CatEditor from './CatEditor';
 
 interface ListScreenProps {
   defaultSortBy: SortBy;
-  onEdit: (cat: Cat) => void;
   keyword: string;
 }
 
@@ -20,14 +18,13 @@ const ListScreen: React.FC<ListScreenProps> = ({
   keyword,
 }): JSX.Element => {
   const { cats, setCats } = useContext(CatContext);
-  const [showEditor, setShowEditor] = useState(false);
+  const [catToEdit, setCatToEdit] = useState<Cat | null>(null);
 
   useEffect((): (() => void) => {
     (async (): Promise<void> => {
       const data = await catRepository.query({ keyword });
       setCats(sortCatsBy(data, defaultSortBy));
     })();
-
     return (): void => {
       // TODO: cancel request
     };
@@ -36,27 +33,28 @@ const ListScreen: React.FC<ListScreenProps> = ({
   if (keyword && cats.length === 0) {
     return (
       <View style={styles.container}>
-        <Text>No cats found</Text>
+        <Text style={styles.noResult}>
+          No cats with keyword "<Text style={styles.redText}>{keyword}</Text>"
+          found.
+        </Text>
       </View>
     );
   }
 
   return (
     <>
-      {showEditor && <CatEditor onClose={(): void => setShowEditor(false)} />}
+      {catToEdit && (
+        <CatEditor cat={catToEdit!} onClose={(): void => setCatToEdit(null)} />
+      )}
       <ScrollView style={styles.scrollview}>
         <View style={styles.container}>
           {cats.map(
             (cat: Cat): JSX.Element => (
-              <CatCard key={cat.id} />
+              <CatCard cat={cat} onEdit={setCatToEdit} key={cat.id} />
             ),
           )}
-          {keyword || (
-            <AddCatButton
-              onPress={(): void => {
-                setShowEditor(true);
-              }}
-            />
+          {!keyword && (
+            <AddCatButton onPress={(): void => setCatToEdit(Cat.empty)} />
           )}
         </View>
       </ScrollView>

@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     paddingVertical: 50,
+    backgroundColor: '#fff',
   },
 
   icon: {

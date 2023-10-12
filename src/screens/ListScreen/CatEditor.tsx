@@ -1,32 +1,74 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Modal, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import styles from './CatEditor.styles';
 import IconButton from '../../components/IconButton/IconButton';
 import { icons } from '../../assets';
+import { Cat, CatContext, Gender } from 'frontend-lib';
+import catRepository from '../../repositories/catRepository';
 
 interface CatEditorProps {
   onClose: () => void;
+  cat: Cat;
 }
 
-const CatEditor: React.FC<CatEditorProps> = ({ onClose }): JSX.Element => {
+const CatEditor: React.FC<CatEditorProps> = ({
+  onClose,
+  cat: initialData,
+}): JSX.Element => {
+  const [cat, setCat] = useState(initialData);
+
+  const { saveCat } = useContext(CatContext);
+
+  const submit = async (): Promise<void> => {
+    saveCat(await catRepository.addOrUpdate(cat));
+    onClose();
+  };
+
   return (
     <View style={styles.centeredView}>
       <Modal animationType="fade" transparent={true} visible={true}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <View style={styles.header}>
-              <Text style={styles.title}>Add Kitty</Text>
+              <Text style={styles.title}>
+                {cat.isNew ? 'Add' : 'Edit'} Kitty
+              </Text>
               <IconButton iconSize={15} icon={icons.delete} onPress={onClose} />
             </View>
             <View>
-              <TextInput style={styles.input} placeholder="Name" />
-              <TextInput style={styles.input} placeholder="Birthday" />
-              <TextInput style={styles.input} placeholder="Boy or Girl" />
+              <TextInput
+                value={cat.name}
+                style={styles.input}
+                placeholder="Name"
+                onChange={(e): void =>
+                  setCat(cat.copyWith({ name: e.nativeEvent.text }))
+                }
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="Birthday"
+                value={cat.birthday}
+                onChange={(e): void =>
+                  setCat(cat.copyWith({ birthday: e.nativeEvent.text }))
+                }
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="Boy or Girl"
+                value={cat.gender}
+                onChange={(e): void =>
+                  setCat(cat.copyWith({ gender: e.nativeEvent.text as Gender }))
+                }
+              />
               <TextInput
                 style={styles.input}
                 placeholder="Bio"
                 multiline
                 numberOfLines={4}
+                value={cat.bio}
+                onChange={(e): void =>
+                  setCat(cat.copyWith({ bio: e.nativeEvent.text }))
+                }
               />
             </View>
             <View style={styles.buttons}>
@@ -36,9 +78,11 @@ const CatEditor: React.FC<CatEditorProps> = ({ onClose }): JSX.Element => {
                 </View>
               </TouchableOpacity>
 
-              <TouchableOpacity>
+              <TouchableOpacity onPress={submit}>
                 <View style={[styles.button, styles.submitButton]}>
-                  <Text style={styles.submitText}>Save</Text>
+                  <Text style={styles.submitText}>
+                    {cat.isNew ? 'Add' : 'Update'}
+                  </Text>
                 </View>
               </TouchableOpacity>
             </View>

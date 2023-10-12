@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 
   logoImage: {
     width: 40,
-    heigiht: 40,
+    height: 40,
     marginRight: 12,
   },
 
@@ -30,6 +30,15 @@ const styles = StyleSheet.create({
   magnifier: {
     width: 20,
     height: 20,
+  },
+
+  searchInput: {
+    flex: 1,
+    height: 40,
+    backgroundColor: '#fff',
+    borderRadius: 4,
+    paddingHorizontal: 16,
+    fontSize: 16,
   },
 });
 
