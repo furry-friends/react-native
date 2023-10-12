@@ -6,20 +6,15 @@
  */
 
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
+import {Colors} from '../config';
+import Header from './Header/Header';
 
 const App = (): JSX.Element => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: Colors.primary,
   };
 
   return (
@@ -28,11 +23,7 @@ const App = (): JSX.Element => {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <ScrollView style={backgroundStyle}>
-        <View>
-          <Text>Hello world!</Text>
-        </View>
-      </ScrollView>
+      <Header />
     </SafeAreaView>
   );
 };
