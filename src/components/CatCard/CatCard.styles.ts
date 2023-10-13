@@ -15,6 +15,8 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '38%',
+    backgroundColor: '#eee',
+    marginRight: 16,
   },
   main: {
     flexGrow: 1,
@@ -24,6 +26,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 8,
+  },
+
+  gender: {
+    width: 18,
+    height: 18,
+    marginLeft: 5,
   },
 
   birthday: {

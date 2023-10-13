@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Text, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
 
 import styles from './CatCard.styles';
 import IconButton from '../IconButton/IconButton';
@@ -22,13 +22,18 @@ const CatCard: React.FC<CatCardProps> = ({ cat, onEdit }): JSX.Element => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.image}>
-        <Text>Image</Text>
-      </View>
+      <View style={styles.image} />
 
       <View style={styles.main}>
         <View>
-          <Text style={styles.name}>{cat.name}</Text>
+          <Text style={styles.name}>
+            {cat.name}
+            <Image
+              style={styles.gender}
+              source={icons[cat.gender]}
+              resizeMode="contain"
+            />
+          </Text>
           <Text style={styles.birthday}>Birthday: {cat.birthday}</Text>
           <Text style={styles.bio}>{cat.bio}</Text>
         </View>
